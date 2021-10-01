@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý sản phẩm</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="data.js"></script>
+</head>
+<body>
+<div class="panel">
+  <h2 id="username"></h2>
+  <button onclick="logout()">Log Out</button>
+  <div class="panel-heading">
+    Input product information
+  </div>
+  <div class="panel-body">
+    <form method="post">
+      <div class="form-group">
+        <label>Product Name:</label>
+        <input type="number" name="index" id="index" value="" hidden="true">
+        <input class="form-control" type="text" name="product_name" id="product_name"
+               placeholder="Enter product name">
+      </div>
+      <div class="form-group">
+        <label>Manufacturer Name:</label>
+        <select class="form-control" id="manuafacturer_name" onchange="changeManufacturer()">
+          <option value="">-- Choose --</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Category Name:</label>
+        <select class="form-control" id="category_name">
+<!--          <option value="">&#45;&#45; Choose &#45;&#45;</option>-->
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Price:</label>
+        <input class="form-control" type="number" name="price" id="price" placeholder="Enter price" value="0"
+               onkeyup="updateTotalPrice()">
+      </div>
+      <div class="form-group">
+        <label>Quantity:</label>
+        <input class="form-control" type="text" name="quantity" id="quantity" placeholder="Enter quantity"
+               value="0" onkeyup="updateTotalPrice()">
+      </div>
+      <div class="form-group">
+        <label>Total Price:</label>
+        <input class="form-control" type="text" name="total_price" id="total_price" value="0" disabled="true">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-success" type="button" onclick="addProduct()">Add Produce</button>
+        <button class="btn btn-danger" type="reset">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="panel" style="margin-top: 20px;">
+  <div class="panel-heading">
+    Product List
+  </div>
+  <div class="panel-body">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>No</th>
+        <th>Product Name</th>
+        <th>Manufacture Name</th>
+        <th>Category Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+      </tr>
+      </thead>
+      <tbody id="result">
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src="QLSP.js"></script>
+<script>
+  let username = loadUserLogin();
+  if (username =="") {
+    window.location.href = "dn.html"
+  }
+  document.getElementById("username").innerHTML = "Xin chào "+username
+  function logout() {
+    saveUserLogin("");
+    window.location.href = "dn.html"
+  }
+</script>
+</body>
+</html>

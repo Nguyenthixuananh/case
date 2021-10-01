@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="data.js"></script>
+</head>
+<body>
+<h1> Đăng ký thành viên</h1>
+<form>
+    <input type="text" placeholder="Họ và tên(*)" id="name"><br>
+    <input type="text" placeholder="Số điện thoại(*)" id="phoneNumber"><br>
+    <input type="email" placeholder="Email(*)" id="email"><br>
+    <input type="password" placeholder="Mật khẩu(*)" id="password"><br>
+    <input type="password" placeholder="Nhập lại mật khẩu(*)" id="repassword"><br>
+    <input type="button"value="Đăng ký" onclick="dangKy()">
+</form>
+<script>
+    function dangKy() {
+        let name = document.getElementById("name").value;
+        let phonenumber = document.getElementById("phoneNumber").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let repassword = document.getElementById("repassword").value;
+        if (name ==="" ||phonenumber ==="" ||email ==="" ||password ==="" ||repassword ==="" ) {
+            alert("Hãy điền đầy đủ thông tin có (*)")
+        }else {
+            alert("Đăng ký thành công");
+            let users = loadData();
+            let userObj = {
+                "name":name,
+                "phonenumber": phonenumber,
+                "email": email,
+                "password" : password
+            }
+            users.push(userObj);
+            saveData(users)
+            window.location.href = "dn.html";
+        }
+
+    }
+</script>
+</body>
+</html>

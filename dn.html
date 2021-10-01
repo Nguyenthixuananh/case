@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+
+        }
+
+        .form-login {
+            width: 300px;
+            height: 500px;
+            border-radius: 10px;
+            padding: 40px;
+        }
+
+        .form-login h1 {
+            margin-bottom: 40px;
+        }
+
+        .form-text {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .form-text input {
+            width: 100%;
+            height: 35px;
+            border: black;
+            text-align: center;
+            border-bottom: 1px solid gray;
+        }
+
+        .form-text label　 {
+            position: absolute;
+        }
+    </style>
+    <script src="data.js"></script>
+</head>
+<body>
+<div class="container">
+    <form>
+        <div class="form-login">
+            <h1>Đăng nhập</h1>
+            <div class="form-text">
+                <label>Tên đăng nhập</label>
+                <input type="text" placeholder="Nhập tên đăng nhâp" id="name_dn">
+            </div>
+            <div class="form-text">
+                <label>Mật khẩu</label>
+                <input type="password" placeholder="Nhập mật khẩu" id="password_dn">
+            </div>
+            <button type="button" onclick="dangNhap()">Đăng nhập</button>
+            <br>
+            <span>Bạn chưa có tài khoản? Đăng ký <a href="dk.html">tại đây</a> </span>
+        </div>
+    </form>
+    <script>
+        function dangNhap() {
+
+            let name = document.getElementById("name_dn").value;
+            let pass = document.getElementById("password_dn").value;
+            let users = loadData();
+            let check = false;
+
+            for (let i = 0; i < users.length; i++) {
+                if (name === users[i].email && pass === users[i].password) {
+                    check = true;
+                    alert("Đăng nhập thành công");
+                    saveUserLogin(users[i].name)
+                    window.location.href = "home.html";
+                }
+            }
+
+            if (!check) alert("Vui lòng nhập lại");
+        }
+    </script>
+</div>
+</body>
+</html>
